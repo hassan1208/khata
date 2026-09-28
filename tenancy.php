@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 db_exec('UPDATE rent_payments SET pay_date=?, amount=?, method=?, note=? WHERE id=? AND tenancy_id=?', [...$data, $pid, $id]);
                 flash('Payment update ho gayi.');
             } else {
-                db_exec('INSERT INTO rent_payments (tenancy_id, pay_date, amount, method, note) VALUES (?,?,?,?,?)', [$id, ...$data]);
-                flash('Kiraya ' . money($amt) . ' wusool likh diya.');
+                $newPay = db_exec('INSERT INTO rent_payments (tenancy_id, pay_date, amount, method, note) VALUES (?,?,?,?,?)', [$id, ...$data]);
+                flash('Kiraya ' . money($amt) . ' wusool likh diya. Raseed: payments list mein receipt icon dabayein (No. R-' . str_pad((string)$newPay, 5, '0', STR_PAD_LEFT) . ').');
             }
             break;
 
@@ -202,6 +202,7 @@ require __DIR__ . '/includes/header.php';
           <td class="small"><?= e($py['method']) ?><?php if ($py['note']): ?><div class="text-muted"><?= e($py['note']) ?></div><?php endif; ?></td>
           <td class="amt text-in"><?= money($py['amount']) ?></td>
           <td class="text-end text-nowrap no-print">
+            <a href="receipt.php?id=<?= $py['id'] ?>" class="btn btn-sm btn-link p-0" title="Raseed"><i class="bi bi-receipt"></i></a>
             <button class="btn btn-sm btn-link p-0" data-bs-toggle="modal" data-bs-target="#payModal" data-fill="#payForm"
               data-values='<?= e(json_encode(['pay_id' => $py['id'], 'pay_date' => $py['pay_date'], 'amount' => $py['amount'], 'method' => $py['method'], 'note' => $py['note']])) ?>'><i class="bi bi-pencil"></i></button>
             <form method="post" class="d-inline" data-confirm="Payment delete karein?"><?= csrf_field() ?><input type="hidden" name="action" value="delete_pay"><input type="hidden" name="pay_id" value="<?= $py['id'] ?>"><button class="btn btn-sm btn-link text-danger p-0"><i class="bi bi-trash"></i></button></form>

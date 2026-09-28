@@ -11,7 +11,9 @@ Aik simple web tool (PHP + MySQLi + Bootstrap 5) apne paison ka hisab rakhne k l
 | **Cash Book** | Opening cash + saari entries ka running balance. "Cash ginti se milayein" se farq adjust. |
 | **Investments** | Har investment mein jab jab installment do, add karte jao (pehle se fix nahi). Profit aur asal raqam ki wapsi alag. ROI, mahana average profit, saal wise. |
 | **Udhar** | Har bande ka account: maine diya / usne wapas kiya / maine liya / maine wapas kiya. Kaun kitna dega / mujhe kitna dena hai. |
-| **Rent** (alag hisab, cash se koi taluq nahi) | Makan → kirayedar (naam, phone, CNIC, advance, stamp paper ki pictures/PDF). Maheena wise kiraya banta hai, payment FIFO se purane maheenon mein adjust hoti hai — gap/aadha maheena khud nazar aata hai. Increment reminder (har X maheenay, % ya fixed), jis maheenay se asal mein barha wahi likhein. Kirayedar chhor jaye to final hisab: baqi kiraya advance se kaato, nuqsan ki kaat, advance wapsi. WhatsApp yaad dehani. Makan ka kharcha (repair, tax). |
+| **Reports** | Saal ka maheena-wise hisab: income, kharcha, bachat, investment, har maheenay k aakhir ka cash; category x maheena; rent banta tha vs wusool hua. Print bhi ho sakta hai. |
+| **Backup** | Settings → Backup: poore database ki `.sql` file aur documents ki `.zip` download. phpMyAdmin → Import se wapas. |
+| **Rent** (alag hisab, cash se koi taluq nahi) | Makan → kirayedar (naam, phone, CNIC, advance, stamp paper ki pictures/PDF). Maheena wise kiraya banta hai, payment FIFO se purane maheenon mein adjust hoti hai — gap/aadha maheena khud nazar aata hai. Increment reminder (har X maheenay, % ya fixed), jis maheenay se asal mein barha wahi likhein. Kirayedar chhor jaye to final hisab: baqi kiraya advance se kaato, nuqsan ki kaat, advance wapsi. WhatsApp yaad dehani. Har payment ki printable raseed (kis maheenay ka kitna, aur baqaya). Makan ka kharcha (repair, tax). |
 
 ## Install (XAMPP / WAMP / cPanel)
 

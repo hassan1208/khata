@@ -105,3 +105,31 @@ function rent_status_badge(string $s): string
         'nil'     => '<span class="badge text-bg-secondary">-</span>',
     ][$s] ?? '';
 }
+
+/**
+ * Har payment kis maheenay (ya pichle baqaye) mein adjust hui — FIFO k mutabiq.
+ * Return: [payment_id => [['label' => 'Jul 2026', 'amount' => 15000], ...]]
+ */
+function payment_allocation(array $t, array $ledger): array
+{
+    $buckets = [];
+    if ($ledger['opening_due'] > 0) $buckets[] = ['label' => 'Pichla baqaya', 'left' => $ledger['opening_due']];
+    foreach ($ledger['months'] as $m) {
+        if ($m['due'] > 0) $buckets[] = ['label' => fmonth($m['month']), 'left' => $m['due']];
+    }
+    $out = [];
+    $i = 0;
+    foreach (db_all('SELECT id, amount FROM rent_payments WHERE tenancy_id = ? ORDER BY pay_date, id', [$t['id']]) as $p) {
+        $amt = (float)$p['amount'];
+        $out[$p['id']] = [];
+        while ($amt > 0.004 && $i < count($buckets)) {
+            $take = min($amt, $buckets[$i]['left']);
+            $out[$p['id']][] = ['label' => $buckets[$i]['label'], 'amount' => $take];
+            $buckets[$i]['left'] -= $take;
+            $amt -= $take;
+            if ($buckets[$i]['left'] <= 0.004) $i++;
+        }
+        if ($amt > 0.004) $out[$p['id']][] = ['label' => 'Advance (aglay maheenon k liye)', 'amount' => $amt];
+    }
+    return $out;
+}

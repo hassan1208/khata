@@ -99,7 +99,7 @@ $hasPass = setting('smtp_pass') !== '';
 
 $pageTitle = 'Settings';
 require __DIR__ . '/includes/header.php';
-$tabs = ['smtp' => ['bi-envelope', 'Email (SMTP)'], 'security' => ['bi-shield-lock', 'Security / OTP'], 'cash' => ['bi-wallet2', 'Opening Cash'], 'categories' => ['bi-tags', 'Expense Categories']];
+$tabs = ['smtp' => ['bi-envelope', 'Email (SMTP)'], 'security' => ['bi-shield-lock', 'Security / OTP'], 'cash' => ['bi-wallet2', 'Opening Cash'], 'categories' => ['bi-tags', 'Expense Categories'], 'backup' => ['bi-download', 'Backup']];
 ?>
 <div class="page-head"><h1><i class="bi bi-gear"></i> Settings</h1></div>
 <ul class="nav nav-tabs mb-3">
@@ -169,6 +169,16 @@ $tabs = ['smtp' => ['bi-envelope', 'Email (SMTP)'], 'security' => ['bi-shield-lo
   </div>
   <button class="btn btn-primary mt-3">Save</button>
 </div></form>
+
+<?php elseif ($tab === 'backup'): ?>
+<div class="card" style="max-width:640px"><div class="card-body">
+  <p>Apna data waqtan fawaqtan download kar k mehfooz jagah (Google Drive, USB) rakhein.</p>
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <form method="post" action="backup.php"><?= csrf_field() ?><input type="hidden" name="what" value="db"><button class="btn btn-primary"><i class="bi bi-database-down"></i> Database backup (.sql)</button></form>
+    <form method="post" action="backup.php"><?= csrf_field() ?><input type="hidden" name="what" value="files"><button class="btn btn-outline-primary"><i class="bi bi-file-zip"></i> Documents (.zip)</button></form>
+  </div>
+  <p class="small text-muted mb-0">Wapas lana ho to: phpMyAdmin → database chunein → Import → .sql file. Documents ki ZIP ko extract kar k <code>uploads/tenancy/</code> mein rakh dein.</p>
+</div></div>
 
 <?php else: ?>
 <div class="card" style="max-width:640px" id="categories"><div class="card-body">

@@ -35,7 +35,8 @@ $bare = $bare ?? false; // login/otp/setup pages: navbar nahi
         </li>
         <li class="nav-item"><a class="nav-link<?= $navActive(['investments.php','investment.php']) ?>" href="investments.php"><i class="bi bi-graph-up-arrow"></i> Investments</a></li>
         <li class="nav-item"><a class="nav-link<?= $navActive(['loans.php','loan.php']) ?>" href="loans.php"><i class="bi bi-people"></i> Udhar</a></li>
-        <li class="nav-item"><a class="nav-link<?= $navActive(['properties.php','property.php','tenancy.php','tenancy_form.php']) ?>" href="properties.php"><i class="bi bi-house-door"></i> Rent</a></li>
+        <li class="nav-item"><a class="nav-link<?= $navActive(['reports.php']) ?>" href="reports.php"><i class="bi bi-bar-chart"></i> Reports</a></li>
+        <li class="nav-item"><a class="nav-link<?= $navActive(['properties.php','property.php','tenancy.php','tenancy_form.php','receipt.php']) ?>" href="properties.php"><i class="bi bi-house-door"></i> Rent</a></li>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link<?= $navActive(['settings.php']) ?>" href="settings.php"><i class="bi bi-gear"></i> Settings</a></li>
