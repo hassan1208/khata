@@ -1,0 +1,3 @@
+uploads/tenancy/*
+!uploads/tenancy/.gitkeep
+config.local.php

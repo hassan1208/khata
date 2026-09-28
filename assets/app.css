@@ -1,0 +1,17 @@
+body { background: #f4f6f9; }
+body.bare { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1f2937, #0f766e); }
+.auth-card { width: 100%; max-width: 420px; }
+.stat-card .label { font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: #6c757d; }
+.stat-card .value { font-size: 1.45rem; font-weight: 600; }
+.card { border: 0; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.table td, .table th { vertical-align: middle; }
+.table-sm td, .table-sm th { padding: .45rem .5rem; }
+.amt { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.text-in { color: #198754 !important; }
+.text-out { color: #dc3545 !important; }
+.otp-input { letter-spacing: .6em; font-size: 1.6rem; text-align: center; }
+.page-head { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.page-head h1 { font-size: 1.5rem; margin: 0; }
+.month-cell { min-width: 90px; }
+.doc-thumb { width: 100%; height: 140px; object-fit: cover; border-radius: .375rem; background: #e9ecef; }
+@media print { nav, .no-print, .btn, form { display: none !important; } body { background: #fff; } }
